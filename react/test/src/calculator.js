@@ -21,9 +21,9 @@ function Calculator() {
 
   return (
     <div>
-      <p>이름을 입력하세요!</p>
-      <input onChange={nameChange}></input>
-      <h3>{name} 하이!</h3>
+      <p>이름을 입력하세요 <input onChange={nameChange}></input></p>
+      <h1>{name} 하이!</h1>
+      <p>계산기</p>
       <input type="number" onChange={valueChange1}></input>
       <select onChange={symbolChange}>
 		    <option value="+">+</option>
