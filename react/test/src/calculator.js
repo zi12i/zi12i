@@ -12,9 +12,11 @@ function Calculator() {
   const valueChange1 = (e) => {
     setNumber1(e.target.value);
   }
-
   const valueChange2 = (e) => {
     setNumber2(e.target.value);
+  }
+  const symbolChange = (e) => {
+    setSymbol(e.target.value);
   }
 
   return (
@@ -23,13 +25,25 @@ function Calculator() {
       <input onChange={nameChange}></input>
       <h3>{name} 하이!</h3>
       <input type="number" onChange={valueChange1}></input>
-      <select>
+      <select onChange={symbolChange}>
 		    <option value="+">+</option>
 		    <option value="-">-</option>
 		    <option value="*">*</option>
 		    <option value="/">/</option>
 	    </select>
       <input type="number" onChange={valueChange2}></input>
+
+      <p> =
+      {(() => {
+        switch (symbol) {
+          case "+":   return parseInt(number1) + parseInt(number2);
+          case "-": return number1 - number2;
+          case "*": return number1 * number2;
+          case "/":  return number1 / number2;
+          default:      return 0;
+        }
+      })()}
+      </p>
     </div>
     
   );
