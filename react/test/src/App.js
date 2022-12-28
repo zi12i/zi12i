@@ -1,10 +1,7 @@
-import React, { useState }from 'react';
+import React from 'react';
 import Calculator from './calculator';
 
 function App() {
-  let a;
-  let b;
-  let symbol
   return (
     <div className="App">
       <header className="App-header">
