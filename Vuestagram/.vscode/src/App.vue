@@ -13,7 +13,7 @@
     />
   </div>
 
-  <Container :postData="postData"/>
+  <Container :postData="postData" :step="step"/>
   <button @click="more">더보기</button>
   <div class="footer">
     <ul class="footer-button-plus">
@@ -43,7 +43,8 @@ export default {
   data(){
     return {
       postData,
-      count: 0
+      count: 0,
+      step: 0
     }
   },
   components: {
