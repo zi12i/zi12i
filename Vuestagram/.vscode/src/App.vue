@@ -17,7 +17,7 @@
   <button @click="more">더보기</button>
   <div class="footer">
     <ul class="footer-button-plus">
-      <input
+      <input @change="upload"
         type="file"
         id="file"
         class="inputfile"
@@ -66,6 +66,13 @@ export default {
         this.postData.push(res.data);
       })
       }
+    },
+    upload(e) {
+      let file = e.target.files;
+      console.log(file[0]);
+      let url = URL.createObjectURL(file[0]);
+      console.log(url)
+      this.step++;
     }
   }
 };
