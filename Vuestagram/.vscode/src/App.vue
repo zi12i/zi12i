@@ -5,7 +5,8 @@
       <li>Cancel</li>
     </ul>
     <ul class="header-button-right">
-      <li>Next</li>
+      <li v-show="step == 1" @click="next">Next</li>
+      <li v-show="step ==2" @click="publish">발행</li>
     </ul>
     <img
       src="./assets/logo.png"
@@ -13,8 +14,8 @@
     />
   </div>
 
-  <Container :postData="postData" :step="step" :url="url"/>
-  <button @click="more">더보기</button>
+  <Container :postData="postData" :step="step" :url="url" @write="this.content = $event"/>
+  <button v-show="step === 0" @click="more">더보기</button>
   <div class="footer">
     <ul class="footer-button-plus">
       <input @change="upload"
@@ -45,7 +46,8 @@ export default {
       postData,
       count: 0,
       step: 0,
-      url: null
+      url: null,
+      content: null
     }
   },
   components: {
@@ -74,6 +76,23 @@ export default {
       let url = URL.createObjectURL(file[0]);
       this.url = url
       this.step++;
+    },
+    next() {
+        this.step++
+    },
+    publish() {
+      let myPost = {
+        name: "Tube",
+        userImage: "https://t1.kakaocdn.net/friends/prod/character/character_20221115085111_57b1a8d285d74e7ca3e69fe604294c82.png",
+        postImage: this.url,
+        likes: 36,
+        date: "May 15",
+        liked: false,
+        content: this.content,
+        filter: "perpetua"
+      };
+      this.postData.unshift(myPost);
+      this.step = 0;
     }
   }
 };

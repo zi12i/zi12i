@@ -6,31 +6,33 @@
     <div class="upload-image" :style="{ backgroundImage : `url(${ url })` }">
     </div>
     <div class="filters">
-      <div class="filter-1"></div>
-      <div class="filter-1"></div>
-      <div class="filter-1"></div>
-      <div class="filter-1"></div>
-      <div class="filter-1"></div>
+      <FilterBox :url="url" :filter="filter" v-for="(filter) in filters" :key="filter">
+        {{ filter }}
+      </FilterBox>
     </div>
   </div>
   <div v-if="step == 2">
     <div class="upload-image" :style="{ backgroundImage : `url(${ url })` }"></div>
     <div class="write">
-      <textarea class="write-box">write!</textarea>
+      <textarea class="write-box" @input="$emit('write', $event.target.value)">write!</textarea>
     </div>
   </div>
 </template>
 
 <script>
 import Post from './Post.vue'
+import FilterBox from './FilterBox.vue'
 export default {
-    // data(){
-    //     return {
-    //         postData: postData
-    //     }
-    // },
+    data(){
+        return {
+            filters: [ "aden", "_1977", "brannan", "brooklyn", "clarendon", "earlybird", "gingham", "hudson", 
+"inkwell", "kelvin", "lark", "lofi", "maven", "mayfair", "moon", "nashville", "perpetua", 
+"reyes", "rise", "slumber", "stinson", "toaster", "valencia", "walden", "willow", "xpro2"]
+        }
+    },
     components: {
-    Post
+    Post,
+    FilterBox
   },
   props: {
     postData: Array,
