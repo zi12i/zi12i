@@ -13,7 +13,7 @@
     />
   </div>
 
-  <Container :postData="postData" :step="step"/>
+  <Container :postData="postData" :step="step" :url="url"/>
   <button @click="more">더보기</button>
   <div class="footer">
     <ul class="footer-button-plus">
@@ -44,7 +44,8 @@ export default {
     return {
       postData,
       count: 0,
-      step: 0
+      step: 0,
+      url: null
     }
   },
   components: {
@@ -71,7 +72,7 @@ export default {
       let file = e.target.files;
       console.log(file[0]);
       let url = URL.createObjectURL(file[0]);
-      console.log(url)
+      this.url = url
       this.step++;
     }
   }
